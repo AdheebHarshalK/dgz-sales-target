@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.module.category" id="target_module_management">
+        <field name="name">Sale Target Management</field>
+        <field name="description">target category</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="target_user_access" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="target_module_management"/>
+    </record>
+
+    <record id="target_admin_access" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="target_module_management"/>
+        <field name="implied_ids" eval="[(4,ref('target_user_access'))]"/>
+    </record>
+</odoo>
+
+

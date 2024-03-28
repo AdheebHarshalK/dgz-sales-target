@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <record id="view_custom_login_form" model="ir.ui.view">
+            <field name="name">custom.login.form</field>
+            <field name="model">custom.login</field>
+            <field name="arch" type="xml">
+                <form string="Login" class="custom_form_background" id="customLoginForm"
+                      style="display: flex; justify-content: center; align-items: center; height: 100vh; float:center;">
+                    <style>.o_control_panel{ display: none;}</style>
+                    <field name="bool" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="image" widget="image" nolabel="1"
+                           style="max-width: 100px; max-height: 100px; margin-top:4%;margin-left:1610px; border-radius: 50%; overflow: hidden; object-fit: cover;margin-left:46%;border: 2px solid white"/>
+                    <group style="display: flex; flex-direction: column; align-items: center;">
+                        <span style="display: inline-block;">
+                            <p style="font-size: 16px; color: #15436c; font-weight: bold; margin-left: 230px; display: inline;">
+                                Welcome
+                            </p>
+                            <span></span>
+                            <field name="user_name" nolabel="1" readonly="1"
+                                   style="font-size: 16px; color: #15436c; font-weight: bold; margin-right: 120px; display: inline;"/>
+                            <p/>
+                        </span>
+                    </group>
+                    <group style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="display: inline-block;width:660px;text-align:center"
+                             attrs="{'invisible': [('bool', '=', False)]}">
+                            <p style="font-size: 16px; color: #15436c;font-weight: bold; margin: 0 5px 0 0; display: inline;">
+                                Your Current Target Amount
+                                <field name="target_amount" readonly="1"
+                                       style="font-size: 16px;display: inline; color: #15436c; font-weight: bold;line-height: 6px;"
+                                       nolabel="1"/>
+                            </p>
+                            <br/>
+                            <p/>
+                            <p style="font-size: 16px; color: #15436c; font-weight: bold; margin: 0 5px 0 5px; display: inline;line-height: 4px;">
+                                From
+                            </p>
+                            <field name="start_date" readonly="1" nolabel="1"
+                                   style="font-size: 16px; color: #15436c; font-weight: bold; display: inline; margin: 0;"/>
+                            <p style="font-size: 16px; color: #15436c; font-weight: bold; margin: 0 5px 0 5px; display: inline;">
+                                To
+                            </p>
+                            <field name="end_date" readonly="1" nolabel="1"
+                                   style="font-size: 16px; color: #15436c; font-weight: bold; display: inline; margin: 0;"/>
+                            <p style="font-size: 16px; color: #15436c; font-weight: bold; margin: 0 5px 0 5px; display: inline;">
+                                You have achieved
+                            </p>
+                            <field name="target_achieved_amount" readonly="1" nolabel="1"
+                                   style="font-size: 16px; color: #15436c; font-weight: bold; display: inline; margin: 0;"/>
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="action_about" model="ir.actions.act_window">
+            <field name="name">Login</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.login</field>
+            <field name="view_mode">form</field>
+        </record>
+    </data>
+</odoo>

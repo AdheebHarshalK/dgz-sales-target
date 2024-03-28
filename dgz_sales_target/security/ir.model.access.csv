@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+login_page.access_custom_login,access_custom_login,dgz_sales_target.model_custom_login,base.group_user,1,1,1,1
+login_page.access_target_user,access_target_user,dgz_sales_target.model_target_user,base.group_user,1,1,1,1
+
+

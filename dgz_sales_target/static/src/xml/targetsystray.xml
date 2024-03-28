@@ -1,0 +1,57 @@
+<templates>
+    <t t-name="SystrayTarget">
+        <div class="SystrayMenuContainer">
+            <div class="o_MessagingMenu dropdown ">
+                <div class="o-dropdown dropdown o_debug_manager o-dropdown--no-caret">
+                    <a class="o_MessagingMenu_toggler dropdown-toggle o-no-caret o-dropdown--narrow"
+                       title="Systray Dropdown" role="button" aria-haspopup="true" aria-expanded="">
+                        <i id='create_so' class="fa fa-bullseye"/>
+                        <span class="badge target_count"></span>
+                    </a>
+                </div>
+                <div id="systray_notif" class="o_MessagingMenu_dropdownMenu  o-dropdown-menu ">
+                    <div class="container" style="padding-top: 4%;">
+                        <div class="systray_notification"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    <t t-name="SystrayDetails">
+        <div class="container">
+            <div class="user-details-box">
+                <div class="detail-row">
+                    <span class="detail-label">User Name:</span>
+                    <span class="detail-value">
+                        <t t-esc="user_details.user_name"/>
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Target Amount:</span>
+                    <span class="detail-value">
+                        <t t-esc="user_details.target_amount"/>
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Start Date:</span>
+                    <span class="detail-value">
+                        <t t-esc="user_details.start_date"/>
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">End Date:</span>
+                    <span class="detail-value">
+                        <t t-esc="user_details.end_date"/>
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Target Achieved Amount:</span>
+                    <span class="detail-value">
+                        <t t-esc="user_details.target_achieved_amount"/>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </t>
+</templates>

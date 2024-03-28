@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="menu_custom" name="Sales Target" sequence="1"/>
+     <menuitem id="menu_custom_about" name="Current  Target" parent="menu_custom" action="action_about"/>
+    <menuitem id="menu_custom_target" name="Targets Overview" parent="menu_custom" action="action_target"/>
+    <menuitem id="menu_custom_target_all"
+          name="Sales Target Management"
+          parent="menu_custom"
+          action="action_target_all"
+          groups="dgz_sales_target.target_admin_access"/>
+</odoo>

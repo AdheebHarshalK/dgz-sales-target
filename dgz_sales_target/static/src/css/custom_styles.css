@@ -1,0 +1,71 @@
+.custom_form_background {
+    background-image: url('/dgz_sales_target/static/src/img/sales.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    filter: brightness(100%);
+}
+
+.custom_form_background field {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.custom_form_background field[readonly="1"] {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.circular_image {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+
+    object-fit: cover;
+}
+
+.target_count {
+    margin-right: -0.5em;
+    padding: 2px 4px;
+    color: white;
+    border-radius: 45%;
+    margin-left: 2.5px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+    transform: translate(-10%, -30%);
+    font-size: 12px;
+}
+
+
+.container {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.user-details-box {
+    padding: 10px;
+}
+
+.detail-row {
+    margin-bottom: 5px;
+}
+
+.detail-label {
+    font-weight: bold;
+}
+
+.detail-value {
+    margin-left: 10px;
+}
+#systray_notif{
+    padding:0;
+width:500%;
+    left:auto;
+    right:0;
+
+}
