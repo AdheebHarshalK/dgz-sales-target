@@ -14,6 +14,11 @@ class loginpage(models.Model):
     target_achieved_amount = fields.Monetary("Achieved Amount", currency_field='currency_id')
     bool = fields.Boolean("Check visibility", default=True)
     currency_id = fields.Many2one('res.currency', "Currency", default=lambda self: self.env.company.currency_id)
+    target_status = fields.Selection([
+        ('red', 'Not Achieved'),
+        ('orange', 'Partially Achieved'),
+        ('green', 'Achieved')
+    ], string='Target Status')
 
     @api.depends('user_name')
     def _compute_user_image(self):
@@ -29,18 +34,21 @@ class loginpage(models.Model):
         start_of_month = current_date.replace(day=1)
         end_of_month = (start_of_month + relativedelta(months=1, days=-1))
 
-        activity = self.env['target.user'].search([
+        target_activity = self.env['target.user'].search([
             ('user_name', '=', user_id.id),
             ('start_date', '>=', start_of_month),
             ('end_date', '<=', end_of_month)
         ])
 
-        if activity:
-            self.user_name = activity.user_name.name
-            self.target_amount = activity.target
-            self.start_date = activity.start_date
-            self.end_date = activity.end_date
-            self.target_achieved_amount = activity.achieved_target
+        if target_activity:
+            target_record = target_activity[0]
+            self.user_name = target_record.user_name.name
+            self.target_amount = target_record.target
+            self.start_date = target_record.start_date
+            self.end_date = target_record.end_date
+            self.target_achieved_amount = target_record.achieved_target
+            self.target_status = self._compute_target_status(target_record)
+
         else:
             self.user_name = user_id.name
             self.bool = False
@@ -67,5 +75,19 @@ class loginpage(models.Model):
                 'end_date': activity.end_date,
                 'target_achieved_amount': activity.achieved_target,
                 'target_count': target_count,
+                'target_status': self._compute_target_status(activity[0])
             }
         return {}
+
+    def _compute_target_status(self, target_record):
+        if target_record.target == 0:
+            return 'red'
+        else:
+            percentage_achieved = (target_record.achieved_target / target_record.target) * 100
+            if percentage_achieved < 100:
+                if percentage_achieved <= 50:
+                    return 'red'
+                else:
+                    return 'orange'
+            else:
+                return 'green'

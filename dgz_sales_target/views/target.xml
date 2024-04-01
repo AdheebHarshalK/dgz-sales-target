@@ -28,13 +28,19 @@
             <field name="name">custom.target.tree</field>
             <field name="model">target.user</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree >
                     <field name="user_name"/>
                     <field name="target"/>
                     <field name="start_date"/>
                     <field name="end_date"/>
                     <field name="achieved_target"/>
                     <field name="currency_id" invisible="1"/>
+<field name="target_status" widget="badge"         options="{'only_groupby': True}"
+       decoration-success="target_status == 'green'"
+       decoration-warning="target_status == 'orange'"
+       decoration-danger="target_status =='red'">
+</field>
+
 
                 </tree>
             </field>

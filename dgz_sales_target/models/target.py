@@ -24,7 +24,7 @@ class Target(models.Model):
             else:
                 record.name = "New"
 
-    @api.depends('user_name', 'start_date', 'end_date')
+    @api.depends('user_name', 'start_date', 'end_date','target_status')
     def _compute_calculate_target(self):
         for record in self:
             data = self.env['account.move'].search([
@@ -35,6 +35,7 @@ class Target(models.Model):
             ])
             total_signed = sum(invoiced.amount_total_signed for invoiced in data)
             record.achieved_target = total_signed
+        self._compute_target_status()
 
     @api.constrains('user_name', 'start_date', 'end_date')
     def _check_unique_target_per_month(self):
@@ -54,4 +55,25 @@ class Target(models.Model):
         for record in self:
             if record.target <= 0:
                 raise ValidationError("Target amount must be greater than zero.")
+
+    target_status = fields.Selection([
+        ('red', 'Not Achieved'),
+        ('orange', 'Partially Achieved'),
+        ('green', 'Achieved')
+    ], compute='_compute_target_status', string='Target Status', store=True)
+
+    @api.depends('achieved_target', 'target')
+    def _compute_target_status(self):
+        for record in self:
+            if record.target == 0:
+                record.target_status = 'red'
+            else:
+                percentage_achieved = (record.achieved_target / record.target) * 100
+                if percentage_achieved < 100:
+                    if percentage_achieved <= 50:
+                        record.target_status = 'red'
+                    else:
+                        record.target_status = 'orange'
+                else:
+                    record.target_status = 'green'
 

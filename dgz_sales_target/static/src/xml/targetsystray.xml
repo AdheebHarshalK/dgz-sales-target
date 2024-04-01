@@ -4,7 +4,7 @@
             <div class="o_MessagingMenu dropdown ">
                 <div class="o-dropdown dropdown o_debug_manager o-dropdown--no-caret">
                     <a class="o_MessagingMenu_toggler dropdown-toggle o-no-caret o-dropdown--narrow"
-                       title="Systray Dropdown" role="button" aria-haspopup="true" aria-expanded="">
+                       title="Sale Target" role="button" aria-haspopup="true" aria-expanded="">
                         <i id='create_so' class="fa fa-bullseye"/>
                         <span class="badge target_count"></span>
                     </a>
@@ -52,6 +52,5 @@
                 </div>
             </div>
         </div>
-
     </t>
 </templates>
